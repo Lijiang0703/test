@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>index</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<script type="text/javascript" src="js/lib/require.js" defer async="true" data-main="js/lib/main"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3 groupware">
+				<button type="button" class="btn btn-primary btn-large btn-block" id="addimg">图片</button>
+				<button type="button" class="btn btn-primary btn-large btn-block" id="addtext">文字</button>
+			</div>
+			<div class="col-md-5 workspace">
+				<div class="work_func">
+					<div class="row">
+						<button type="button" class="col-md-4 col-md-push-1 btn btn-primary" id="work_save">保存</button>
+						<button type="button" class="col-md-4 col-md-push-3 btn btn-primary" id="work_show">预览</button>	
+					</div>
+				</div>
+				<div class="work col-md-12" id="work"></div>
+			</div>
+			<div class="col-md-4 property">
+				<div class="pro_list">
+					<button type="button" class="btn btn-primary">基本属性</button>
+					<button type="button" class="btn btn-primary">高级属性</button>
+				</div>
+				<div class="pro_normal_choice">
+					<div class="pro_text">
+						
+					</div>
+					<div class="pro_img">
+						<button type="button" class="btn btn-primary" id="pro_img_change">更改图片</button>
+					</div>
+				</div>
+				<div class="pro_high_choice">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>
