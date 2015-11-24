@@ -38,6 +38,7 @@ a {
 }
 .workspace .textstyle:hover {
   box-shadow: 0 0 3px 3px #ccc;
+  z-index: 99;
 }
 .workspace .imgstyle {
   border: 1px dashed #000;
@@ -45,6 +46,7 @@ a {
 }
 .workspace .imgstyle:hover {
   box-shadow: 0 0 3px 3px #ccc;
+  z-index: 99;
 }
 .property .pro_list {
   border-bottom: 1px solid #fff;
@@ -57,4 +59,8 @@ a {
 }
 .textstyle {
   border: 1px solid #ccc;
+}
+.newimg {
+  height: 200px;
+  cursor: pointer;
 }

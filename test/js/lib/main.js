@@ -15,25 +15,18 @@ require.config({
 	}
 });
 
-require(['jquery','add'],function($,a){
-	var elevent=new a.add();
-	// $('body').on('click',function(e){
-	// 	var tar=e.target.id;
-	// 	if(tar=='addimg'){
-	// 		isimgadd:true
-	// 	}
-	// 	if(tar=='addtext'){
-	// 		istextadd:true
-	// 	}
-	// })
+require(['jquery','board'],function($,b){
 	$("#addimg").on('click',function(){
-		elevent.fun({
-			isimgadd:true
-		})	
+		var model = new b.m();
+		b.c_img.add([model]);
 	});
 	$("#addtext").on('click',function(){
-		elevent.fun({
-			istextadd:true
-		})	
+		var model = new b.m();
+		b.c_text.add([model]);	
 	});
+	// $("#work_show").on('click',function(){
+	// 	elevent.fun({
+	// 		ispreview:true
+	// 	})	
+	// });
 });
