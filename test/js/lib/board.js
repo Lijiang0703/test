@@ -30,10 +30,12 @@ define(['backbone','text!template.tpl'],function(){
 	//model
 	var m=Backbone.Model.extend({
 		defaults:{
-			textvalue:"请输入文字",
+			textvalue:"点击输入文字",
 			imgsrc:"img/1.jpg"
+
 		}
 	});
+		
 	var _v_img=Backbone.View.extend({
 		el:$('#work'),
 		template:_.template(tpl_img),

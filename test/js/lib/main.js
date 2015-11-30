@@ -27,6 +27,7 @@ require.config({
 require(['jquery','board','bootbox'],function($,b,box){
 	$(function(){
 		var getstore=window.localStorage?localStorage.getItem("store"):Cookie.read("store");
+		// console.log(getstore);
 		$("#work").html(getstore);
 	});
 	$("#addimg").on('click',function(){

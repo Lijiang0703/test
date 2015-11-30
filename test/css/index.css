@@ -67,3 +67,7 @@ a {
   right: 30px;
   top: 10px;
 }
+.newimg {
+  height: 200px;
+  cursor: pointer;
+}
