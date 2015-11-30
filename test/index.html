@@ -6,8 +6,15 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/animate.css">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
-	
+
 	<script type="text/javascript" src="js/lib/require.js" defer async="true" data-main="js/lib/main"></script>
+	<script type="text/javascript" src="js/tinymce.min.js"></script>
+	<script type="text/javascript">
+	tinymce.init({
+		selector:'#textdir'
+	});
+
+	</script>
 </head>
 <body>
 	
@@ -32,15 +39,15 @@
 					<button type="button" class="btn btn-primary">高级属性</button>
 				</div>
 				<div class="pro_normal_choice">
-					<div class="pro_text" id="pro_text"></div>
+					<div class="pro_text" id="pro_text">
+						<textarea name="" id="textdir" cols="30" rows="10">Hello WOrld</textarea>
+					</div>
 					<div class="pro_img" id="pro_img"></div>
 				</div>
 				<div class="pro_high_choice">
-					
 				</div>
 			</div>
 		</div>
 	</div>
-	
 </body>
 </html>
