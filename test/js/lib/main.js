@@ -1,4 +1,5 @@
 require.config({
+<<<<<<< HEAD
 	// baseUrl:"ueditor",
 	paths:{
 		jquery:'jquery-2.1.3',
@@ -6,6 +7,12 @@ require.config({
 		backbone:'backbone-min',
 		bootstrap:'bootstrap.min',
 		bootbox:'bootbox.min'
+=======
+	paths:{
+		jquery:'jquery-2.1.3',
+		underscore:'underscore-min',
+		backbone:'backbone-min'
+>>>>>>> 8177e5a6f87adc80ea3c18b390a6b84f5fcf2ee4
 	},
 	shim:{
 		'underscore':{
@@ -14,6 +21,7 @@ require.config({
 		'backbone':{
 			deps:['underscore','jquery'],
 			exports:'Backbone'
+<<<<<<< HEAD
 		},
 		'bootstrap':{
 			deps:['jquery'],
@@ -22,10 +30,13 @@ require.config({
 		'bootbox':{
 			deps:['jquery','bootstrap'],
 			exports:'bootbox'
+=======
+>>>>>>> 8177e5a6f87adc80ea3c18b390a6b84f5fcf2ee4
 		}
 	}
 });
 
+<<<<<<< HEAD
 require(['jquery','board','bootbox'],function($,b,box){
 	$(function(){
 		var getstore=window.localStorage?localStorage.getItem("store"):Cookie.read("store");
@@ -33,6 +44,9 @@ require(['jquery','board','bootbox'],function($,b,box){
 		$("#work").html(getstore);
 	});
 
+=======
+require(['jquery','board'],function($,b){
+>>>>>>> 8177e5a6f87adc80ea3c18b390a6b84f5fcf2ee4
 	$("#addimg").on('click',function(){
 		var model = new b.m();
 		b.c_img.add([model]);
@@ -41,6 +55,7 @@ require(['jquery','board','bootbox'],function($,b,box){
 		var model = new b.m();
 		b.c_text.add([model]);	
 	});
+<<<<<<< HEAD
 	$("#work_save").on('click',function(){
 		var source=$('#work').html();
 		if(window.localStorage){
@@ -62,4 +77,11 @@ require(['jquery','board','bootbox'],function($,b,box){
 		});
 	});
 
+=======
+	// $("#work_show").on('click',function(){
+	// 	elevent.fun({
+	// 		ispreview:true
+	// 	})	
+	// });
+>>>>>>> 8177e5a6f87adc80ea3c18b390a6b84f5fcf2ee4
 });

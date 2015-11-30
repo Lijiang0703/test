@@ -32,9 +32,10 @@ define(['backbone','text!template.tpl'],function(){
 		defaults:{
 			textvalue:"点击输入文字",
 			imgsrc:"img/1.jpg"
+
 		}
 	});
-
+		
 	var _v_img=Backbone.View.extend({
 		el:$('#work'),
 		template:_.template(tpl_img),
@@ -68,7 +69,6 @@ define(['backbone','text!template.tpl'],function(){
 		do:function(e){
 			var do_text= new Vatt_text();
 			var _text=e.target;
-			do_text.setvalue
 		}
 	});
 	var v_img = new _v_img();
