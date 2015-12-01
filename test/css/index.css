@@ -12,7 +12,6 @@ a {
 }
 .row {
   background: #ccc;
-  padding: 10px;
 }
 .workspace {
   padding: 5px;
@@ -31,6 +30,12 @@ a {
   padding: 0;
   position: relative;
 }
+.workspace .mod:hover .close {
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  display: inline-block;
+}
 .imgstyle {
   border: 1px dashed #000;
   height: 100px;
@@ -43,7 +48,7 @@ a {
   height: 30px;
   line-height: 30px;
   border: 1px dashed #000;
-  outline: none;
+  margin-bottom: 0;
 }
 .textstyle:hover {
   box-shadow: 0 0 3px 3px #ccc;
@@ -55,17 +60,20 @@ a {
 }
 .property .pro_normal_choice {
   background: rgba(255, 255, 255, 0.9);
-  height: 500px;
+  height: 600px;
   margin-top: 10px;
 }
-.newimg {
-  height: 200px;
-  cursor: pointer;
+.pro_text {
+  display: block;
+}
+.pro_img {
+  display: none;
 }
 .close {
   position: absolute;
-  right: 30px;
+  left: 20px;
   top: 10px;
+  display: none;
 }
 .newimg {
   height: 200px;

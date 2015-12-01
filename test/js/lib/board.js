@@ -1,4 +1,4 @@
-define(['backbone','text!template.tpl'],function(){
+define(['backbone','text!template.tpl','edit'],function(){
 	var tpl = require('text!template.tpl');
 	var tpl_text		= tpl.split('<br/>')[0];
 	var tpl_img 		= tpl.split('<br/>')[1];
@@ -13,6 +13,8 @@ define(['backbone','text!template.tpl'],function(){
 			this.render();
 		},
 		render:function(){
+			this.$el.siblings('div').css('display','none');
+			this.$el.css('display','block');
 			this.$el.empty();
 			for(var i=1;i<5;i++){
 				this.$el.append(this.template({changesrc:i}));
@@ -25,14 +27,17 @@ define(['backbone','text!template.tpl'],function(){
 		}
 	});
 	var Vatt_text=Backbone.View.extend({
-		el:$('#pro_text')
+		el:$('#pro_text'),
+		initialize:function(){
+			this.$el.siblings('div').css('display','none');
+			this.$el.css('display','block');
+		}
 	});
-	//model
 	var m=Backbone.Model.extend({
 		defaults:{
-			textvalue:"点击输入文字",
-			imgsrc:"img/1.jpg"
-
+			textvalue	:"点击输入文字",
+			imgsrc		:"img/1.jpg"
+			// callback 	:changetext(obj)
 		}
 	});
 		
@@ -62,14 +67,18 @@ define(['backbone','text!template.tpl'],function(){
 		template:_.template(tpl_text),
 		add:function(model){
 			this.$el.append(this.template(model.toJSON()));
-		},
-		events:{
-			'click':'do'
-		},
-		do:function(e){
-			var do_text= new Vatt_text();
-			var _text=e.target;
+			$('.textstyle').on('click',function(e){
+				var do_text= new Vatt_text();
+				model.set('callback',changetext(e.target));
+			});
 		}
+		// events:{
+		// 	'click .textstyle' : 'do'
+		// },
+		// do:function(model){
+		// 	var do_text= new Vatt_text();
+		// 	console.log(e.target);
+		// }
 	});
 	var v_img = new _v_img();
 	var v_text= new _v_text();
@@ -83,10 +92,10 @@ define(['backbone','text!template.tpl'],function(){
 	});
 
 	return {
-		v_img:v_img,
-		v_text:v_text,
-		c_img:c_img,
-		c_text:c_text,
-		m:m,
+		v_img 	: v_img,
+		v_text  : v_text,
+		c_img 	: c_img,
+		c_text	: c_text,
+		m     	: m,
 	}
 });	

@@ -11,7 +11,6 @@ a{
 }
 .row{
 	background:#ccc;
-	padding:10px;
 }
 [class*="col-"]{
 	// background:#ccc;
@@ -32,6 +31,13 @@ a{
 		background:#fff;
 		padding:0;
 		position:relative;
+
+		&:hover .close{
+			position:absolute;
+			left:20px;
+			top:10px;
+			display:inline-block;
+		}
 	}
 }
 .imgstyle{
@@ -46,7 +52,7 @@ a{
 	height:30px;
 	line-height:30px;
 	border:1px dashed #000;
-	outline:none;
+	margin-bottom:0;
 	&:hover{
 		box-shadow:0 0 3px 3px #ccc;
 		z-index:99;
@@ -59,20 +65,22 @@ a{
 	}
 	.pro_normal_choice{
 		background:rgba(255,255,255,0.9);
-		height:500px;
+		height:600px;
 		margin-top:10px;		
 	}
 }
-.pro_img,.pro_text{
+.pro_text{
+	display:block;
 }
-.newimg{
-	height:200px;
-	cursor:pointer;
+.pro_img{
+	display:none;
 }
 .close{
 	position:absolute;
-	right:30px;
-	top:10px;}
+	left:20px;
+	top:10px;
+	display:none;
+}
 .newimg{
 	height:200px;
 	cursor:pointer;

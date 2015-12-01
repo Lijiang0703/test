@@ -52,8 +52,7 @@ require(['jquery','board','bootbox'],function($,b,box){
 		var showsource=$('#work').html();
 		showsource.replace('textstyle','textstyle_show');
 		showsource.replace('animated','');
-		console.log(showsource);
-		bootbox.alert({
+			bootbox.alert({
 			title:'预览',
 			message:showsource
 		});
