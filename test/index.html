@@ -9,18 +9,6 @@
 
 	<script type="text/javascript" src="js/lib/require.js" defer async="true" data-main="js/lib/main"></script>
 	<script type="text/javascript" src="js/tinymce.min.js"></script>
-	<script type="text/javascript">
-	tinymce.init({
-		selector:'#textdir',
-		menu:{
-			view:{title:'Edit',items:'cut,copy,paste'}
-		},
-		toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify ',
-		height:300,
-		statusbar:false
-    
-	});
-	</script>
 	<script type="text/javascript" src="js/lib/edit.js"></script>
 </head>
 <body>
@@ -42,16 +30,16 @@
 			<div class="col-md-4 property">
 				<div class="pro_list">
 					<button type="button" class="btn btn-primary">基本属性</button>
-					<button type="button" class="btn btn-primary">高级属性</button>
+					<!-- <button type="button" class="btn btn-primary">高级属性</button> -->
 				</div>
-				<div class="pro_normal_choice">
-					<div class="pro_text" id="pro_text" style="display:none">
-						<textarea name="" id="textdir" cols="30" rows="10">点击输入文字</textarea>
+				<div class="pro_normal_choice" id="pro_normal_choice">
+					<!-- <div class="pro_text" id="pro_text">
+						<textarea name="" id="textdir" type="edittxt" cols="30" rows="10">点击输入文字</textarea>
 					</div>
-					<div class="pro_img" id="pro_img"></div>
+					<div class="pro_img" id="pro_img"></div> -->
 				</div>
-				<div class="pro_high_choice">
-				</div>
+<!-- 				<div class="pro_high_choice">
+				</div> -->
 			</div>
 		</div>
 	</div>

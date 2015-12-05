@@ -30,13 +30,19 @@ require(['jquery','board','bootbox'],function($,b,box){
 		// console.log(getstore);
 		$("#work").html(getstore);
 	});
+	var _imgid = 0;
+	var	_txtid = 0;
 	$("#addimg").on('click',function(){
-		var model = new b.m();
+		_imgid++;
+		var model = new b.m({id:'img'+_imgid,imgid:_imgid,type:'img'});
 		b.c_img.add([model]);
+		// b.c_all.add(model);	
 	});
 	$("#addtext").on('click',function(){
-		var model = new b.m();
-		b.c_text.add([model]);	
+		_txtid++;
+		var model = new b.m({id:'txt'+_txtid,txtid:_txtid,type:'txt'});
+		b.c_text.add([model]);
+		// b.c_all.add(model);	
 	});
 	$("#work_save").on('click',function(){
 		var source=$('#work').html();
@@ -49,12 +55,9 @@ require(['jquery','board','bootbox'],function($,b,box){
 		}
 	});
 	$('#work_show').on('click',function(){
-		var showsource=$('#work').html();
-		showsource.replace('textstyle','textstyle_show');
-		showsource.replace('animated','');
 			bootbox.alert({
 			title:'预览',
-			message:showsource
+			message:$('#work').html()
 		});
 	});
 });
