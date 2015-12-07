@@ -29,7 +29,7 @@ define(['backbone',
 			$('.newimg').on('click',function(e){
 				if(_image.get('imgsrc') == e.target.src) return;
 				else {
-					// console.log(_image.get('imgsrc'),e.target.src);
+					// console.log(_image.get('imgsrc'));
 					_image.set('imgsrc',e.target.src);	
 				}
 			});
@@ -58,12 +58,16 @@ define(['backbone',
 		template:_.template(tpl_img),
 		initialize:function(){
 			this.render();
-			that=this.$el;
+			that=this;
 			this.model.on('change:imgsrc',function(){
-				var tem=_.template(tpl_img);
-				var el=$(tem(this.toJSON()));				
-				that.replaceWith(el);//that只外来一次
-				// that=el;
+			console.log(this.previousAttributes(),this.attributes);
+				// var tem = _.template(tpl_img);				
+				// var el = $(tem(this.toJSON()));				
+				// that.replaceWith(el);//that获取的问题
+				// that = el;
+
+			// var el=$(that.template(this.previousAttributes()));
+				// el.replaceWith(that.$el);
 			});
 		},
 		render:function(){
@@ -73,14 +77,15 @@ define(['backbone',
 				return this;
 		},
 		events:{
-			'click .close'	:'close',
-			'click .imgstyle':'do'
+			'click .close'		:'close',
+			'click .imgstyle'	:'do'
+			// 'flur .imgstyle':'remove'
 		},
 		close:function(){
 			this.$el.remove();
 		},
 		do:function(){
-			// console.log(this.model);
+			console.log(this.model.get('imgsrc'));
 			var show  = new Vatt_img();
 				show.Imgchange(this.model);
 		}
@@ -106,7 +111,8 @@ define(['backbone',
 		},
 		do:function(){
 			var do_text = new Vatt_text({model:this.model});
-			this.model.set('callback',changetext(this));
+			var that=this;
+			this.model.set('callback',changetext(that.$el));
 		}
 	});
 
@@ -124,7 +130,8 @@ define(['backbone',
 var c_img  = new Backbone.Collection;
 var c_text  = new Backbone.Collection;
 	c_img.on("add", function(model) {
-	  	new _v_img({model:model});
+	  	var v_img = new _v_img({model:model});
+
 	  	// model.save(null,{success:function(){	
 	  	// 	console.log('OK');
 	  	// }},{wait:true});

@@ -19,10 +19,10 @@ function changetext(obj){
 	timer = null;
 	initTiny(); 
 	if(!tinyMCE.activeEditor) return;
-	tinyMCE.activeEditor.setContent(obj[0].innerHTML);  
+	tinyMCE.activeEditor.setContent(obj[0].children[1].innerHTML);  
 
 	timer = setInterval(function(){
 		var temp = tinyMCE.activeEditor.getContent();
-			obj[0].innerHTML = temp;
+			obj[0].children[1].innerHTML = temp;
 	},10);
 }
