@@ -58,9 +58,6 @@ define(['backbone',
 			this.render();
 			that=this;
 			this.model.on('change:imgsrc',function(){
-			    // var el=$(that.template(this.previousAttributes()));
-       //              el.replaceWith(that.$el);
-       //          that.setElement(el);
 			});
 		},
 		render:function(){
@@ -108,7 +105,6 @@ define(['backbone',
 		}
 	});
 
-<<<<<<< HEAD
 	var c_all  = new Backbone.Collection();
 		c_all.on('add',function(model){
 			if(model.get("type")=='img'){
