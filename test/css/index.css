@@ -73,3 +73,7 @@ a {
   height: 200px;
   cursor: pointer;
 }
+.sortPlaceholder {
+  border: 1px solid red;
+  z-index: 9999;
+}
