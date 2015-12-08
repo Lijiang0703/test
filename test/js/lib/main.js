@@ -27,7 +27,6 @@ require.config({
 require(['jquery','board','bootbox'],function($,b,box){
 	$(function(){
 		var getstore=window.localStorage?localStorage.getItem("store"):Cookie.read("store");
-		// console.log(getstore);
 		$("#work").html(getstore);
 	});
 	var _imgid = 0;
@@ -35,14 +34,14 @@ require(['jquery','board','bootbox'],function($,b,box){
 	$("#addimg").on('click',function(){
 		_imgid++;
 		var model = new b.m({id:'img'+_imgid,imgid:_imgid,type:'img'});
-		b.c_img.add([model]);
-		// b.c_all.add(model);	
+		// b.c_img.add([model]);
+		b.c_all.add(model);	
 	});
 	$("#addtext").on('click',function(){
 		_txtid++;
 		var model = new b.m({id:'txt'+_txtid,txtid:_txtid,type:'txt'});
-		b.c_text.add([model]);
-		// b.c_all.add(model);	
+		// b.c_text.add([model]);
+		b.c_all.add(model);	
 	});
 	$("#work_save").on('click',function(){
 		var source=$('#work').html();

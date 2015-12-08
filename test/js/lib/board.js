@@ -41,7 +41,6 @@ define(['backbone',
 		el:$('#pro_normal_choice'),
 		template:_.template(tpl_textedit),
 		initialize:function(){
-			console.log(this.model);
 			this.$el.html(this.template(this.model.toJSON()));
 		}
 	});
@@ -60,7 +59,7 @@ define(['backbone',
 			this.render();
 			that=this;
 			this.model.on('change:imgsrc',function(){
-			console.log(this.previousAttributes(),this.attributes);
+			// console.log(this.previousAttributes(),this.attributes);
 				// var tem = _.template(tpl_img);				
 				// var el = $(tem(this.toJSON()));				
 				// that.replaceWith(el);//that获取的问题
@@ -79,7 +78,6 @@ define(['backbone',
 		events:{
 			'click .close'		:'close',
 			'click .imgstyle'	:'do'
-			// 'flur .imgstyle':'remove'
 		},
 		close:function(){
 			this.$el.remove();
@@ -117,33 +115,18 @@ define(['backbone',
 	});
 
 
-	// var c_all  = new Backbone.Collection();
-	// c_all.on('add',function(model){
-	// 	// console.log(model.get('type'));
-	// 	if(model.type=='img'){
-	// 		 new _v_img({model:model});	
-	// 	}
-	// 	else{
-	// 		new _v_text({model:model});
-	// 	}
-	// });
-var c_img  = new Backbone.Collection;
-var c_text  = new Backbone.Collection;
-	c_img.on("add", function(model) {
-	  	var v_img = new _v_img({model:model});
-
-	  	// model.save(null,{success:function(){	
-	  	// 	console.log('OK');
-	  	// }},{wait:true});
-	});
-	c_text.on("add",function(model){
-		var v_text = new _v_text({model:model});
-	});
+	var c_all  = new Backbone.Collection();
+		c_all.on('add',function(model){
+			if(model.get("type")=='img'){
+				 new _v_img({model:model});	
+			}
+			else{
+				new _v_text({model:model});
+			}
+		});
 
 	return {
-		c_img 	: c_img,
-		c_text	:c_text,
-		// c_all	:c_all,
+		c_all	:c_all,
 		m     	: m
 	}
 });
