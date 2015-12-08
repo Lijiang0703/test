@@ -58,15 +58,6 @@ define(['backbone',
 			this.render();
 			that=this;
 			this.model.on('change:imgsrc',function(){
-<<<<<<< HEAD
-			// console.log(this.previousAttributes(),this.attributes);
-				// var tem = _.template(tpl_img);				
-				// var el = $(tem(this.toJSON()));				
-				// that.replaceWith(el);//that获取的问题
-				// that = el;
-=======
->>>>>>> 0073cc7a103c871f0010918770864dc46bffbc35
-
 			    var el=$(that.template(this.previousAttributes()));
                     el.replaceWith(that.$el);
                 that.setElement(el);
@@ -117,8 +108,6 @@ define(['backbone',
 		}
 	});
 
-
-<<<<<<< HEAD
 	var c_all  = new Backbone.Collection();
 		c_all.on('add',function(model){
 			if(model.get("type")=='img'){
@@ -130,20 +119,6 @@ define(['backbone',
 		});
 
 	return {
-=======
-	var c_all       = new Backbone.Collection();
-	c_all.on('add',function(model){
-		if(model.get('type')=='img'){
-			 new _v_img({model:model});
-		}
-		else{
-			new _v_text({model:model});
-		}
-	});
-
-
-	return{
->>>>>>> 0073cc7a103c871f0010918770864dc46bffbc35
 		c_all	:c_all,
 		m     	: m
 	}
