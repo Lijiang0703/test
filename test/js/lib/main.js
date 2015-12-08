@@ -4,7 +4,8 @@ require.config({
 		underscore:'underscore-min',
 		backbone:'backbone-min',
 		bootstrap:'bootstrap.min',
-		bootbox:'bootbox.min'
+		bootbox:'bootbox.min',
+        jqueryui:'jquery-ui'
 	},
 	shim:{
 		'underscore':{
@@ -27,22 +28,21 @@ require.config({
 require(['jquery','board','bootbox'],function($,b,box){
 	$(function(){
 		var getstore=window.localStorage?localStorage.getItem("store"):Cookie.read("store");
-		// console.log(getstore);
-		$("#work").html(getstore);
+		    $("#work").html(getstore);
 	});
-	var _imgid = 0;
-	var	_txtid = 0;
+
+	var img_id = 0;
+	var	txt_id = 0;
+
 	$("#addimg").on('click',function(){
-		_imgid++;
-		var model = new b.m({id:'img'+_imgid,imgid:_imgid,type:'img'});
-		b.c_img.add([model]);
-		// b.c_all.add(model);	
+		img_id++;
+		var model = new b.m({id:'img'+img_id,imgid:img_id,type:'img'});
+		 b.c_all.add(model);
 	});
 	$("#addtext").on('click',function(){
-		_txtid++;
-		var model = new b.m({id:'txt'+_txtid,txtid:_txtid,type:'txt'});
-		b.c_text.add([model]);
-		// b.c_all.add(model);	
+		txt_id++;
+		var model = new b.m({id:'txt'+txt_id,txtid:txt_id,type:'txt'});
+		 b.c_all.add(model);
 	});
 	$("#work_save").on('click',function(){
 		var source=$('#work').html();
