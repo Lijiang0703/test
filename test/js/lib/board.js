@@ -110,7 +110,6 @@ define(['backbone',
 		}
 	});
 
-
     var _c_all      = Backbone.Collection.extend({
         initialize:function(){
             this.on('add',function(model){
