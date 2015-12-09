@@ -25,27 +25,36 @@ require.config({
 		}
 	}
 });
-require(['jquery','board','bootbox'],function($,b,box){
+require(['jquery','board','bootbox','sort'],function($,b,box){
+    var _Sort  = require('sort');
+    var _id = 0;
+
 	$(function(){
-		var getstore=window.localStorage?localStorage.getItem("store"):Cookie.read("store");
-		    $("#work").html(getstore);
+        //初始化tinymce
+        initTiny();
+        //json格式转化为数组
+		var getstore = JSON.parse(window.localStorage?localStorage.getItem("store"):Cookie.read("store"));
+        if(getstore == null)  return;
+        for(var i=0;i<getstore.length;i++){
+           _id=getstore[i].id;
+            var model=new b.m(getstore[i]);
+            b.c_all.add(model);
+        }
 	});
 
-	var img_id = 0;
-	var	txt_id = 0;
-
 	$("#addimg").on('click',function(){
-		img_id++;
-		var model = new b.m({id:'img'+img_id,imgid:img_id,type:'img'});
+		_id++;
+		var model = new b.m({id:_id,imgid:_id,type:'img'});
 		 b.c_all.add(model);
 	});
 	$("#addtext").on('click',function(){
-		txt_id++;
-		var model = new b.m({id:'txt'+txt_id,txtid:txt_id,type:'txt'});
+		_id++;
+		var model = new b.m({id:_id,txtid:_id,type:'txt'});
 		 b.c_all.add(model);
 	});
 	$("#work_save").on('click',function(){
-		var source=$('#work').html();
+        //本地保存的只能是字符串
+        var source = JSON.stringify(b.c_all);
 		if(window.localStorage){
 			localStorage.removeItem("store");
 			localStorage.setItem("store",source);
@@ -53,6 +62,23 @@ require(['jquery','board','bootbox'],function($,b,box){
 		else{
 			Cookie.write("store",source);
 		}
+        //模拟ajax数据请求
+        //$.ajax({
+        //    url:'/save',
+        //    data:{_source:source},
+        //    type:'post',
+        //    success:function(e){
+        //        if(e.success){
+        //            alert('OK');
+        //        }
+        //        else{
+        //            alert('no');
+        //        }
+        //    },
+        //    error:function(){
+        //        alert('again');
+        //    }
+        //});
 	});
 	$('#work_show').on('click',function(){
 			bootbox.alert({

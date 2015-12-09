@@ -1,6 +1,3 @@
-// window.onload=function(){
-// 	initTiny();
-// }
 function initTiny(){
 	tinymce.init({
 		selector:'#textdir',

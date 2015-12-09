@@ -3,13 +3,13 @@ define(['backbone',
 	'text!tem_text.html',
 	'text!tem_newimage.html',
 	'text!tem_textedit.html',
-	'edit','sort'],function(){
+	'edit'],function(){
 
 	//获取模版
 	var tpl_text 		= require('text!tem_text.html');
 	var tpl_img 		= require('text!tem_image.html');
 	var tpl_changeimg 	= require('text!tem_newimage.html');
-	var tpl_textedit 	= require('text!tem_textedit.html');	
+	var tpl_textedit 	= require('text!tem_textedit.html');
 
 	//显示图片属性
 	var Vatt_img    = Backbone.View.extend({
@@ -47,8 +47,7 @@ define(['backbone',
 	var m           = Backbone.Model.extend({
 		defaults:{
 			textvalue	: "点击输入文字",
-			imgsrc		: "img/1.jpg",
-			textedit 	: "点击输入文字123"
+			imgsrc		: "img/1.jpg"
 		}
 	});
 
@@ -58,10 +57,10 @@ define(['backbone',
 			this.render();
 			that=this;
 			this.model.on('change:imgsrc',function(){
-
 			    var el=$(that.template(this.previousAttributes()));
-                    el.replaceWith(that.$el);
-                that.setElement(el);
+                    //el.replaceWith(that.$el);
+
+                //that.setElement(el);
 			});
 		},
 		render:function(){
@@ -76,6 +75,7 @@ define(['backbone',
 		},
 		close:function(){
 			this.$el.remove();
+            this.model.collection.remove(this.model);//从collection中移除model
 		},
 		do:function(){
 			//console.log(this.model.get('imgsrc'));
@@ -101,25 +101,29 @@ define(['backbone',
 		},
 		close:function(){
 			this.$el.remove();
+            this.model.collection.remove(this.model);
 		},
 		do:function(){
-			var do_text = new Vatt_text({model:this.model});
-			var that=this;
-			this.model.set('callback',changetext(that.$el));
+            var do_text = new Vatt_text({model:this.model});
+            this.model.set('textvalue',this.$el.children('div').html());
+			this.model.set('callback',changetext(this.$el));
 		}
 	});
 
 
-	var c_all       = new Backbone.Collection();
-	c_all.on('add',function(model){
-		if(model.get('type')=='img'){
-			 new _v_img({model:model});
-		}
-		else{
-			new _v_text({model:model});
-		}
-	});
-
+    var _c_all      = Backbone.Collection.extend({
+        initialize:function(){
+            this.on('add',function(model){
+                if(model.get('type')=='img'){
+                    new _v_img({model:model});
+                }
+                else {
+                    new _v_text({model: model});
+                }
+            })
+        }
+    });
+	var c_all       = new _c_all();
 
 	return{
 		c_all	:c_all,
