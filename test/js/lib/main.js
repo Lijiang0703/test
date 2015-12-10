@@ -40,6 +40,9 @@ require(['jquery','board','bootbox','sort'],function($,b,box){
             var model=new b.m(getstore[i]);
             b.c_all.add(model);
         }
+        //_.each(getstore,function(v,k){
+        //
+        //});
 	});
 
 	$("#addimg").on('click',function(){
@@ -63,22 +66,22 @@ require(['jquery','board','bootbox','sort'],function($,b,box){
 			Cookie.write("store",source);
 		}
         //模拟ajax数据请求
-        //$.ajax({
-        //    url:'/save',
-        //    data:{_source:source},
-        //    type:'post',
-        //    success:function(e){
-        //        if(e.success){
-        //            alert('OK');
-        //        }
-        //        else{
-        //            alert('no');
-        //        }
-        //    },
-        //    error:function(){
-        //        alert('again');
-        //    }
-        //});
+        $.ajax({
+            url:'/save',
+            data:{_source:source},
+            type:'post',
+            success:function(e){
+                if(e.success){
+                    alert('OK');
+                }
+                else{
+                    alert('no');
+                }
+            },
+            error:function(){
+                alert('again');
+            }
+        });
 	});
 	$('#work_show').on('click',function(){
 			bootbox.alert({

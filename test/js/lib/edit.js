@@ -21,5 +21,5 @@ function changetext(obj){
 	timer = setInterval(function(){
 		var temp = tinyMCE.activeEditor.getContent();
 			obj[0].children[1].innerHTML = temp;
-	},10);
+	},20);
 }

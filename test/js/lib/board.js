@@ -8,31 +8,36 @@ define(['backbone',
 	//获取模版
 	var tpl_text 		= require('text!tem_text.html');
 	var tpl_img 		= require('text!tem_image.html');
-	var tpl_changeimg 	= require('text!tem_newimage.html');
+	var tpl_newimg 	= require('text!tem_newimage.html');
 	var tpl_textedit 	= require('text!tem_textedit.html');
 
 	//显示图片属性
 	var Vatt_img    = Backbone.View.extend({
 		el:$('#pro_normal_choice'),
-		template:_.template(tpl_changeimg),
+		template:_.template(tpl_newimg),
 		initialize:function(){
 			this.render();
+            _.bind(this.imgchange,this);
 		},
 		render:function(){
 			this.$el.empty();
+            var that = this;
 			for(var i=1;i<5;i++){
-				this.$el.append(this.template({changesrc:i}));
+                var ch_el = $(this.template({changesrc:i}));
+                ch_el.on('click',function(){
+                    if(that.model.get('imgsrc') == this.src) return;
+                    else that.model.set('imgsrc',this.src);
+                });
+                this.$el.append(ch_el);
 			}
 			return this;
-		},
-		Imgchange:function(_image){
-			$('.newimg').on('click',function(e){
-				if(_image.get('imgsrc') == e.target.src) return;
-				else {
-					_image.set('imgsrc',e.target.src);	
-				}
-			});
 		}
+        //events:{
+        //    'click el' : 'imgchange'
+        //},
+        //imgchange: function () {
+        //    console.log(this.model);
+        //}
 	});
 
 	//文字编辑样式
@@ -55,32 +60,31 @@ define(['backbone',
 		template:_.template(tpl_img),
 		initialize:function(){
 			this.render();
-			that=this;
+			var that=this;
 			this.model.on('change:imgsrc',function(){
-			    var el=$(that.template(this.previousAttributes()));
-                    //el.replaceWith(that.$el);
-
-                //that.setElement(el);
+               that.render();
 			});
 		},
 		render:function(){
 			var el=$(this.template(this.model.toJSON()));
+            if($('#work').find('[id='+this.model.id+']').length){
+                $('#work').find('[id='+this.model.id+']').replaceWith(el);
+            }else{
+                $('#work').append(el);
+            }
             this.setElement(el);
-				$('#work').append(this.$el);
-				return this;
+			return this;
 		},
 		events:{
 			'click .close'		:'close',
-			'click .imgstyle'	:'do'
+			'dblclick .imgstyle':'do'
 		},
 		close:function(){
 			this.$el.remove();
             this.model.collection.remove(this.model);//从collection中移除model
 		},
 		do:function(){
-			//console.log(this.model.get('imgsrc'));
-			var show  = new Vatt_img();
-				show.Imgchange(this.model);
+			var show  = new Vatt_img({model:this.model});
 		}
 	});
 
@@ -97,7 +101,7 @@ define(['backbone',
 		},
 		events:{
 			'click .close'		: 'close',
-			'click .textstyle'	: 'do'
+			'dblclick .textstyle'	: 'do'
 		},
 		close:function(){
 			this.$el.remove();
@@ -121,6 +125,10 @@ define(['backbone',
                 }
             })
         }
+        //comparator:function(model){
+        //    console.log(model.id);
+        //    return model;
+        //}
     });
 	var c_all       = new _c_all();
 
